@@ -26,7 +26,7 @@ source("./SupportFuns.R")
 source("./MainFuns.R")
 
 # Load data
-data. <- read.table("C:/RoulaTsonaka/Papers/MargzedFamilies2/GIT/MargFams/Dataset.txt")
+data. <- read.table("./Dataset.txt")
 
 
 asc.size <- 1
