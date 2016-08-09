@@ -1,6 +1,29 @@
 logLikFam <- function (thetas, y, yPatterns, X, kinmat, n.mems, id, GHs, marginalized = FALSE,
                        ascert = FALSE, lambda, truePrev, sig.x, MAF, pseudo = FALSE,
                        penalty.glmm = FALSE, penalty.glmmN = FALSE) {
+  
+  # arguments
+  -----------
+  # thetas = vector with parameter values
+  # y =  Binary response vector
+  # yPatterns = Response patterns to compute denominator in ascertainment corrected likelihood
+  # X = design matrix
+  # kinmat = coefficient of relationships matrix
+  # n.mems = family size (the same for all families)
+  # id = ID indicator vector
+  # GHs = number of Gauss-Hermite quadrature points
+  # marginalized = logical to fit the marginalized GLMM (TRUE) or GLMM (FALSE),
+  # ascert = logical to use the ascertainment-corrected likleihood (TRUE) or not (FALSE). If FALSE then families are assumed to be a random sample.
+  # lambda = scalar, penalty parameter. lambda = 0 gives the unpenalized fit; lambda > 0 gives the penalized solution
+  # truePrev = scalar for the true prevalence value
+  # sig.x = std deviation for the distribution of the continuous covariate
+  # MAF = scalar for the minor allele frequency
+  # pseudo = logical for the integration approach. pseudo = FALSE is recommended.
+  # penalty.glmm = logical to use approximate formula (TRUE) for the computation of the penalty term or evaluate it numerically (FALSE)
+  # penalty.glmmN = logical to use approximate formula (TRUE) for the computation of the penalty term or evaluate it numerically (FALSE)
+  
+  
+  
   # parameters
   betasM <- thetas[-length(thetas)]
   sigma.b <- exp(thetas[length(thetas)])

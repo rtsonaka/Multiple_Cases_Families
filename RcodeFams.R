@@ -79,8 +79,8 @@ yPatterns <- if(asc.size == 1) {
 
 # Simulated data can be found in Dataset.txt
 # n = 48 multiple-cases sibships of size 3 have been simulated with at least 1 case.
-# coefficients: c(-2.5, 0, -0.5) - intercept, SNP, age
-# genetic variance: 3
+# true coefficients: c(-2.5, 0, -0.5); intercept, SNP, age
+# true genetic variance: 3
 # true prevalence 0.09
 
 # Design matrix
@@ -92,8 +92,8 @@ optFam.0 <- try(optim(initThet, logLikFam, scoreFam,
                       y = y, yPatterns = yPatterns, X = X,
                       kinmat = kin.mat, n.mems = n.mems, id = id, 
                       GHs = 11, lambda = 0, truePrev = 0.1, sig.x = 1, MAF = 0.3,
-                      marginalized = FALSE, ascert = TRUE, pseudo = FALSE,
-                      penalty.glmm = TRUE, penalty.glmmN = FALSE,
+                      marginalized = TRUE, ascert = TRUE, pseudo = FALSE,
+                      penalty.glmm = FALSE, penalty.glmmN = FALSE,
                       method = "BFGS", hessian = FALSE,
                       control = list(trace = 10, maxit = 500, 
                                      parscale = c(0.1, 0.1, 0.1, 0.01))))
@@ -109,8 +109,8 @@ if(!inherits(optFam.0, "try-error")){
     hes0 <- Hessian.logLikFam(optFam.0$ par, y, yPatterns = yPatterns,
                               X, kinmat = kin.mat, n.mems, id, GHs = 11,
                               lambda = 0, truePrev = 0.1, sig.x = 1, MAF = 0.3,
-                              marginalized = FALSE, ascert = TRUE, pseudo = FALSE,
-                              penalty.glmm = TRUE, penalty.glmmN = FALSE)
+                              marginalized = TRUE, ascert = TRUE, pseudo = FALSE,
+                              penalty.glmm = FALSE, penalty.glmmN = FALSE)
     cat("\nStd Errors:", sqrt(diag(solve(hes0)))) 
 
     # Using the prevalence information would be helpful - this is what we do next
